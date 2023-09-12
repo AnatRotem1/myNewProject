@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mynewproject"
+version = "0.1.0"
+description = ""
+authors = ["anat <rotem.anat@gmail.com>"]
+
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+base_url = 'http://localhost:3000/'
+addopts = [
+    "-ra",
+    "--color=yes",
+    "--headed",
+    "--video=retain-on-failure",
+]
