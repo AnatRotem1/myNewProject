@@ -17,22 +17,17 @@ class Utils:
         api_url = f"http://0.0.0.0:5000/page?page={page_num}"
         response = requests.get(api_url)
         duration = time.time() - start_time
+        assert response.status_code == 200, f"Expected 200 status code, but got {response.status_code}"
+        assert duration < 1.0, f"Expected response time to be less than 1 second, but got {duration} seconds in page {page_num}"
 
-        try:
-            assert response.status_code == 200, f"Expected 200 status code, but got {response.status_code}"
-            assert duration < 1.0, f"Expected response time to be less than 1 second, but got {duration} seconds in page {page_num}"
-        except AssertionError as e:
-            print(f"Error message: {str(e)}")
 
 
     def verify_no_duplicate_ids(self, members_dict):
         my_set = set()
         for entry in members_dict.values():
             id_value = entry['id']
-            try:
-                assert id_value not in my_set, f"Duplicate id found: {id_value}"
-                my_set.add(id_value)
-            except AssertionError as e:
-                print(f"Error message: {str(e)}")
+            assert id_value not in my_set, f"Duplicate id found: {id_value}"
+            my_set.add(id_value)
+
 
 
